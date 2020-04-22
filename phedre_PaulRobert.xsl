@@ -19,8 +19,8 @@
 \usepackage{graphicx}
 \usepackage[french]{babel}
 \usepackage{reledmac}
-\usepackage{makeidx}
-\makeindex
+\usepackage{glossaries}
+\makeglossaries
 <xsl:call-template name="glossaire"/>
 \setstanzaindents{0,1}
 \setcounter{stanzaindentsrepetition}{1}        
@@ -42,30 +42,71 @@
 \stanza 
 <xsl:call-template name="verse"/>
 \endnumbering
-\chapter*{glossaire}
-\printindex
+\printglossaries
 \end{document}
         </xsl:result-document>
     </xsl:template>
+    <xsl:template match="//sp">
+         <xsl:value-of select="./replace(@who, '#','')"/><xsl:text> : </xsl:text>
+         <xsl:apply-templates/>
+            
+    </xsl:template>
     <xsl:template name="verse">
-        <xsl:for-each select="//sp">
-            <xsl:value-of select="./replace(@who, '#','')"/><xsl:text> : </xsl:text>
+        <xsl:for-each select="//l">
             <xsl:apply-templates/>
             <xsl:choose>
                 <xsl:when test="position() = last()"><xsl:text> \&amp; </xsl:text></xsl:when>
+                <xsl:otherwise><xsl:text> &amp; </xsl:text></xsl:otherwise>
             </xsl:choose>
-        </xsl:for-each>        
+        </xsl:for-each> 
     </xsl:template>
   
-    <xsl:template match="//l">
-            <xsl:apply-templates/>
-            <xsl:choose>
-            <xsl:when test="position() = last()"><xsl:text> &amp; </xsl:text></xsl:when>
-            <xsl:otherwise><xsl:text> &amp; </xsl:text></xsl:otherwise>
-        </xsl:choose>
+  <!-- <xsl:template match="//sp">
+       <xsl:for-each select="./l">
+           <xsl:choose>
+               <xsl:when test="position() = last()"><xsl:text> \&amp; </xsl:text></xsl:when>
+               <xsl:otherwise><xsl:text> &amp; </xsl:text></xsl:otherwise>
+           </xsl:choose>
+       </xsl:for-each> 
+    </xsl:template>-->
+    
+    <!-- <xsl:template name="verse">
+        <xsl:for-each select="//sp">
+            <xsl:value-of select="./replace(@who, '#','')"/>
+            <xsl:for-each select="//l">
+                <xsl:value-of select="./text()"/>
+                <xsl:for-each select="app">
+                    <xsl:text>\edtext{</xsl:text>
+                    <xsl:value-of select="./lem/text()"/><xsl:text>}{\Afootnote{</xsl:text>
+                    <xsl:for-each select="./rdg">
+                        <xsl:choose>
+                            <xsl:when test="@type='om'">
+                                <xsl:text>\textit{omisit} </xsl:text><xsl:value-of select="./replace(@wit, '#', ' ')"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="."/><xsl:text> </xsl:text>
+                                <xsl:value-of select="./replace(@wit, '#', ' ')"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        <xsl:choose>
+                            <xsl:when test="position() != last()">, </xsl:when>
+                        <xsl:otherwise/>
+                        </xsl:choose>     
+                </xsl:for-each>
+                <xsl:text>}}</xsl:text>
+                </xsl:for-each>
+                <xsl:choose>
+                    <xsl:when test="position() = last()"><xsl:text> \&amp; </xsl:text></xsl:when>
+                    <xsl:otherwise><xsl:text> &amp; </xsl:text></xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:for-each>
         
     </xsl:template>
-    
+    <xsl:template match="l">
+        <xsl:value-of select="."/>
+        <xsl:text> &amp; </xsl:text>
+    </xsl:template> -->
     <xsl:template match="app">
         <xsl:text>\edtext{</xsl:text>
         <xsl:value-of select="lem"/><xsl:text>}{\Afootnote{</xsl:text>
@@ -84,7 +125,7 @@
             </xsl:choose>     
         </xsl:for-each>
         <xsl:text>}}</xsl:text>
-    </xsl:template>
+    </xsl:template> 
     
     <xsl:template name="titre" match="titleStmt">
         <xsl:text>\title{</xsl:text>
@@ -100,11 +141,36 @@
         <xsl:text>}}</xsl:text>
     </xsl:template>
     
-    <xsl:template name="glossaire">
-        <xsl:for-each select="//listPlace/place/placeName">
-            <xsl:text>\index{</xsl:text>
-            <xsl:apply-templates/>
-            <xsl:text>}</xsl:text>
+    <xsl:template name='glossaire'>
+        <xsl:for-each select="//person">
+            <xsl:text>\newglossaryentry{</xsl:text>
+            <xsl:value-of select="./replace(@xml:id, ' ', '')"/>
+            <xsl:text>}{name={</xsl:text>
+            <xsl:value-of select=".//surname/text()"/>
+            <xsl:text>},description={</xsl:text>
+            <xsl:value-of select="./occupation/text()"/>
+            <xsl:text>}}</xsl:text>
+        </xsl:for-each>
+        <xsl:for-each select="//place">
+            <xsl:text>\newglossaryentry{</xsl:text>
+            <xsl:value-of select="./replace(@xml:id, ' ', '')"/>
+            <xsl:text>}{name={</xsl:text>
+            <xsl:value-of select=".//placeName/text()"/>
+            <xsl:text>},description={</xsl:text>
+            <xsl:value-of select="./note/text()"/>
+            <xsl:text>}}</xsl:text>
         </xsl:for-each>
     </xsl:template>
+    
+    <xsl:template match="body//placeName">
+        <xsl:text>\gls{</xsl:text>
+        <xsl:value-of select="./replace(@ref, '#', '')"/><xsl:text>}</xsl:text>
+    </xsl:template>
+    
+    
+    <xsl:template match="persName">
+        <xsl:text>\gls{</xsl:text>
+        <xsl:value-of select="./replace(@ref, '#', '')"/><xsl:text>}</xsl:text>
+    </xsl:template>
+    
 </xsl:stylesheet>

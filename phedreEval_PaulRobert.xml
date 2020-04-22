@@ -89,73 +89,68 @@
          <settingDesc>
             <listPlace>
                <place xml:id="Styx" type="fleuve" subtype="mythologique">
-                  <placeName><geogName>Le fleuve Styx</geogName></placeName>
+                  <placeName>Le fleuve Styx</placeName><note>Fleuve mythologique des enfers</note>
                </place>
                <place xml:id="Athenes" type="cité">
-                  <placeName>Pallas<note>Pallas-Athena est un des noms de la déesse Athéna, déesse
-                        protectrice de la ville d'Athènes</note>
-                     <country>Grèce</country>
-                     <settlement type="citadelle">Athènes</settlement></placeName>
-                  <placeName>Athènes <country>Grèce</country></placeName>
+                  <placeName>Pallas-Athènes<country>Grèce</country><settlement type="citadelle"
+                        >Athènes</settlement></placeName>
+                  <note>Pallas-Athena est un des noms de la déesse Athéna, déesse protectrice de la
+                     ville d'Athènes</note>
                </place>
                <place xml:id="Hespérie" type="pays">
-                  <placeName><country>Espagne</country><note>Du point de vue des
-                     latins.</note></placeName>
-                  <placeName><country>Italie</country><note>Du point de vue des
-                     grecs.</note></placeName>
-                  <note>Désigne de manière générique les "terres à l'ouest".</note>
+                  <placeName>Espagne</placeName>
+                  <note>Désigne de manière générique les "terres à l'ouest". Du point de vue des latins, c'est l'Espagne, et du point de vue des grecs c'est l'Italie.</note>
                </place>
                <place xml:id="TropiqueCancer" type="latitude">
                   <location>
                      <geo>parallèle 23° 26' 12.555" de latitude nord</geo>
                   </location>
-                  <placeName><country>Algérie</country></placeName>
-                  <placeName><country>Niger</country></placeName>
-                  <placeName><country>Mauritanie</country></placeName>
-                  <placeName><country>Égypte</country></placeName>
-                  <placeName><country>Lybie</country></placeName>
-                  <placeName><country>Arabie Saoudite</country></placeName>
+                  <placeName>Tropique du Cancer</placeName>
                   <note>Ces pays ont en commun d'être familiers des romains et des grecs, et d'être
-                     traversés par le tropique du Cancer.</note>
+                     traversés par le tropique du Cancer. Cela peut être les pays actuels de l'Algérie, du Niger, de la Mauritanie, de l'Egypte, de la Lybie et de l'Arabie Saoudite.</note>
                </place>
                <place xml:id="Nord">
+                  <placeName>Nord de l'Italie</placeName>
                   <location>
                      <geo>Région au nord de l'Italie et de la Grèce</geo>
                   </location>
                   <note>Ces régions sont froides, et souvent peuplées de nomades.</note>
                </place>
                <place xml:id="Thessalie">
-                  <placeName><region>Thessalie</region></placeName>
+                  <placeName>Thessalie</placeName>
+                  <note>Région au sud de la Macédoine et au nord de l'Epire faisant partie de la Grèce antique.</note>
                </place>
                <place xml:id="Perse" type="empire">
                   <placeName from-custom="550 av. J-C" to-custom="330 av. J-C"
-                        ><country>Perse</country></placeName>
+                        >Perse</placeName>
                   <note>Pays recouvrant notammant l'Iran.</note>
                </place>
                <place xml:id="Lydie" type="royaume">
-                  <placeName><country>Lydie</country></placeName>
+                  <placeName>Lydie</placeName>
+                  <note>Pays de l'Antiquité situé en Asie Mineure, à l'est de l'Eolie.</note>
                </place>
                <place xml:id="Tyr" type="ville">
-                  <placeName><settlement>Tyr</settlement></placeName>
+                  <placeName>Tyr</placeName>
                   <location>
                      <geo>33° 16′ 08″ nord, 35° 12′ 59″ est</geo>
                   </location>
+                  <note>Ville de Phénicie, au sud de l'actuel Liban.</note>
                </place>
             </listPlace>
          </settingDesc>
          <particDesc>
             <listPerson type="Personnages">
                <person xml:id="Phedre" sex="femme">
-                  <persName><forename>Phèdre</forename></persName>
+                  <persName><surname>Phèdre</surname></persName>
                   <occupation>Reine d'Athènes</occupation>
                </person>
                <person xml:id="Nourrice" sex="femme">
                   <persName><surname>La Nourrice</surname></persName>
-                  <occupation>Nourrice et confidente de Phèdre</occupation>
+                  <occupation>Nourrice et confidente de Phèdre.</occupation>
                </person>
                <person xml:id="Thésée" sex="homme">
-                  <persName><forename>Thésée</forename></persName>
-                  <occupation>Roi d'Athènes</occupation>
+                  <persName><surname>Thésée</surname></persName>
+                  <occupation>Roi d'Athènes.</occupation>
                </person>
                <listRelation>
                   <relation name="epoux" mutual="#Phedre #Thésée"/>
@@ -163,42 +158,49 @@
             </listPerson>
             <listPerson type="Dieux">
                <person xml:id="Pluton">
-                  <persName><name>Pluton</name><name>Dis</name><name>Dis Pater</name><roleName>Dieu
-                        des enfers</roleName></persName>
+                  <persName><surname>Pluton</surname><name>Dis</name><name>Dis
+                        Pater</name><roleName>Dieu des enfers</roleName></persName>
+                  <occupation>Dieu des enfers.</occupation>
                </person>
                <person xml:id="Venus">
-                  <persName><name>Vénus</name><roleName>Déesse de l'amour</roleName></persName>
+                  <persName><surname>Vénus</surname><roleName>Déesse de
+                     l'amour</roleName></persName>
+                  <occupation>Déesse de l'amour.</occupation>
                </person>
                <person xml:id="Athéna">
-                  <persName><name>Athéna</name><name>Pallas-Athéna</name><name>Pallas</name><roleName>Déesse
-                        de la sagesse</roleName></persName>
+                  <persName><surname>Athéna</surname><name>Pallas-Athéna</name><name>Pallas</name><roleName>Déesse
+                        de la sagesse</roleName>
+                  </persName><occupation>Déesse de la sagesse.</occupation>
                </person>
                <person xml:id="Cupidon">
-                  <persName><name>Cupidon</name><roleName>Dieu de l'amour</roleName></persName>
+                  <persName><surname>Cupidon</surname><roleName>Dieu de
+                     l'amour</roleName></persName><occupation>Dieu de l'amour.</occupation>
                </person>
                <person xml:id="Apollon">
-                  <persName><name>Phébus</name><name>Phoebus</name><name>Apollon</name><roleName>Dieu
-                        incarnant le soleil</roleName></persName>
+                  <persName><surname>Phébus</surname><name>Phoebus</name><name>Apollon</name><roleName>Dieu
+                        incarnant le soleil</roleName></persName><occupation>Dieu incarnant le soleil.</occupation>
                </person>
             </listPerson>
             <listPerson type="Mentionnés">
                <person xml:id="Antiope">
-                  <persName><forename>Antiope</forename></persName>
+                  <persName><surname>Antiope</surname></persName>
                   <death>Morte à Athènes.</death>
-                  <occupation>Reine des Amazones</occupation>
+                  <occupation>Reine des Amazones.</occupation>
                   <nationality>Amazone</nationality>
                   <note>Seule amazone à s'être mariée</note>
                </person>
                <person xml:id="Pirithoüs">
-                  <persName><forename>Pirithoüs</forename><forename>Pirithoos</forename></persName>
+                  <persName><surname>Pirithoüs</surname><forename>Pirithoos</forename></persName>
                   <occupation>Roi des Lapithes.</occupation>
                </person>
                <person xml:id="Ariane">
-                  <persName><forename>Ariane</forename></persName>
+                  <persName><surname>Ariane</surname></persName>
+                  <occupation>Soeur de Phèdre et fille du roi de Crète, Minos.</occupation>
                </person>
                <person xml:id="Alcmène">
-                  <persName><forename>Alcmène</forename><roleName>Reine de
+                  <persName><surname>Alcmène</surname><roleName>Reine de
                      Tirynthe.</roleName></persName>
+                  <occupation>Reine de Tirynthe et mère d'Héraclès.</occupation>
                   <note>Elle eut une relation avec Zeus, de laquelle union naquit Héraclès.</note>
                </person>
                <listRelation>
@@ -380,10 +382,10 @@
             <l n="260">an missa praeceps<placeName ref="#Athenes"> arce <persName ref="#Athéna"
                      >Palladia</persName></placeName> cadam? </l>
             <l n="261"><app>
-               <lem wit="#E">Proin castitatis vindicem armemus manum.</lem>
-               <rdg wit="#A">pro(h) castitatis vindicem armemus manum.</rdg>
-               <rdg wit="#G" type="om"/>
-                     </app></l>
+                  <lem wit="#E">Proin castitatis vindicem armemus manum.</lem>
+                  <rdg wit="#A">pro(h) castitatis vindicem armemus manum.</rdg>
+                  <rdg wit="#G" type="om"/>
+               </app></l>
          </sp>
          <sp who="#Nourrice">
             <l n="262"><app>
@@ -501,20 +503,21 @@
             <l n="311">tradidit currus aliter regendos:</l>
             <l n="312">ille nocturnas agitare bigas</l>
             <l n="313">discit et gyro breviore flecti, </l>
-            <l n="316"><app>
+            <l n="314"><app>
                   <lem wit="#LEO #perseus">dum tremunt axes graviore curru; </lem>
                   <rdg
                      wit="#A #BOTHE #C #E #F #G #GROTIUS #K #L #M #N #Ox #P #Q #R #S #T #Th #V #Z #d #e #ecl #τ #recc #ed"
                      type="om"/>
                </app></l>
-            <l n="314">nec suum tempus tenuere nectes </l>
+            <l n="314bis">nec suum tempus tenuere nectes </l>
             <l n="315">et dies tardo remeavit ortu. </l>
-            <app>
-               <lem wit="#LEO" type="om"/>
-               <rdg
-                  wit="#A #BOTHE #C #E #F #G #GROTIUS #K #L #M #N #Ox #P #Q #R #S #T #Th #V #Z #d #e #ecl #τ #recc #perseus #ed"
-                     ><l n="316">dum tremunt axes graviore curru; </l></rdg>
-            </app>
+            <l n="316"><app>
+                  <lem wit="#LEO" type="om"/>
+                  <rdg
+                     wit="#A #BOTHE #C #E #F #G #GROTIUS #K #L #M #N #Ox #P #Q #R #S #T #Th #V #Z #d #e #ecl #τ #recc #perseus #ed"
+                     >dum tremunt axes graviore curru; </rdg>
+               </app></l>
+
             <l n="317">natus <persName ref="#Alcmène">Alcmena</persName> posuit pharetras </l>
             <l n="318">et minax vasti spolium leonis,</l>
             <l n="319">passus aptari digitis zmaragdos</l>
