@@ -2183,9 +2183,9 @@
                      <!-- J'ai restreint l'usage de l'attribut "who" en le rendant obligatoire, et en restreignant ses valeurs à celles existantes dans le passage étudié -->
                      <attDef ident="who" usage="req" mode="change">
                         <valList mode="add" type="closed">
-                           <valItem ident="#Phedre"/>
-                           <valItem ident="#Nourrice"/>
-                           <valItem ident="#Choeur"/>
+                           <valItem ident="#Phaedra"/>
+                           <valItem ident="#Nutrix"/>
+                           <valItem ident="#Chorus"/>
                            <valItem ident="#ChoeurGressae"/>
                         </valList>
                      </attDef>
