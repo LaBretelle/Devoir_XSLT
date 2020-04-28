@@ -118,14 +118,17 @@ la valeur de l'attribut n du premier <l> et du dernier <l> de l'ensemble du docu
     <!-- Je récupère dans le texte toutes les balises placeName et je les transforme en balise de glossaire LaTeX -->
     <xsl:template match="body//placeName">
         <xsl:text>\gls{</xsl:text>
-        <xsl:value-of select="./replace(@ref, '#', '')"/>
+        <!-- La formule ci-ddessous (réutilisée 3 autres fois) a pour but de récupérer le xml:id, et de mettre la première lettre en majuscule et les autres
+        en minuscule. La formule réunit (avec concat) la première lettre du xml:id en la mettant en capitale (avec upper-case) et toutes les autres lettres en les mettant en 
+        minuscule (avec lower-case) -->
+        <xsl:value-of select="./concat(upper-case(substring(replace(@ref, '#', ''), 1, 1)), lower-case(substring(replace(@ref, '#', ''), 2)))"/>
         <xsl:text>}</xsl:text>
     </xsl:template>
     
     <!-- Je récupère dans le texte toutes les balises persName et je les transforme en balise de glossaire LaTeX -->
     <xsl:template match="persName">
         <xsl:text>\gls{</xsl:text>
-        <xsl:value-of select="./replace(@ref, '#', '')"/>
+        <xsl:value-of select="./concat(upper-case(substring(replace(@ref, '#', ''), 1, 1)), lower-case(substring(replace(@ref, '#', ''), 2)))"/>
         <xsl:text>}</xsl:text>
     </xsl:template>
     
@@ -133,10 +136,10 @@ la valeur de l'attribut n du premier <l> et du dernier <l> de l'ensemble du docu
     <xsl:template name='glossaire'>
         <xsl:for-each select="//person">
             <xsl:text>\newglossaryentry{</xsl:text>
-            <xsl:value-of select="./replace(@xml:id, ' ', '')"/> <!-- Je récupère le xml:id pour nommer l'entité car je la récupère aussi pour compléter les balises
+            <xsl:value-of select="./concat(upper-case(substring(replace(@xml:id, ' ', ''), 1, 1)), lower-case(substring(replace(@xml:id, ' ', ''), 2)))"/> <!-- Je récupère le xml:id pour nommer l'entité car je la récupère aussi pour compléter les balises
             \gls dans le texte. En effet, il faut que le nom dans le texte et dans le préambule soit identique, j'utilise donc la valeur de l'attribut xml:id / ref -->
             <xsl:text>}{name={</xsl:text>
-            <xsl:value-of select="./replace(@xml:id, ' ', '')"/> 
+            <xsl:value-of select="./concat(upper-case(substring(replace(@xml:id, ' ', ''), 1, 1)), lower-case(substring(replace(@xml:id, ' ', ''), 2)))"/> 
             <xsl:text>},description={</xsl:text>
             <xsl:value-of select="./occupation/text()"/> <!-- Ce qui est écrit dans la balise <occupation> est ce qui se rapproche le plus d'une note de glossaire -->
             <xsl:text>}}</xsl:text>
@@ -144,9 +147,9 @@ la valeur de l'attribut n du premier <l> et du dernier <l> de l'ensemble du docu
         <!-- Je fais la même chose à l'identique, mais pour les lieux -->
         <xsl:for-each select="//place">
             <xsl:text>\newglossaryentry{</xsl:text>
-            <xsl:value-of select="./replace(@xml:id, ' ', '')"/>
+            <xsl:value-of select="./concat(upper-case(substring(replace(@xml:id, ' ', ''), 1, 1)), lower-case(substring(replace(@xml:id, ' ', ''), 2)))"/>
             <xsl:text>}{name={</xsl:text>
-            <xsl:value-of select="./replace(@xml:id, ' ', '')"/>
+            <xsl:value-of select="./concat(upper-case(substring(replace(@xml:id, ' ', ''), 1, 1)), lower-case(substring(replace(@xml:id, ' ', ''), 2)))"/>
             <xsl:text>},description={</xsl:text>
             <xsl:value-of select="./note/text()"/>
             <xsl:text>}}</xsl:text>

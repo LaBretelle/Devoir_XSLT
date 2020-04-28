@@ -99,7 +99,7 @@
                </place>
                <place xml:id="Hesperiae" type="pays">
                   <placeName>Espagne</placeName>
-                  <note>Désigne de manière générique les "terres à l'ouest". Du point de vue des latins, c'est l'Espagne, et du point de vue des grecs c'est l'Italie.</note>
+                  <note>Désigne de manière générique les "terres à l'ouest". Du point de vue des latins, c'est l'Espagne, et du point de vue des grecs c'est l'Italie</note>
                </place>
                <place xml:id="cancro" type="latitude">
                   <location>
@@ -107,34 +107,34 @@
                   </location>
                   <placeName>Tropique du Cancer</placeName>
                   <note>Ces pays ont en commun d'être familiers des romains et des grecs, et d'être
-                     traversés par le tropique du Cancer. Cela peut être les pays actuels de l'Algérie, du Niger, de la Mauritanie, de l'Egypte, de la Lybie et de l'Arabie Saoudite.</note>
+                     traversés par le tropique du Cancer. Cela peut être les pays actuels de l'Algérie, du Niger, de la Mauritanie, de l'Egypte, de la Lybie et de l'Arabie Saoudite</note>
                </place>
                <place xml:id="Parrhasiae">
                   <placeName>Nord de l'Italie</placeName>
                   <location>
                      <geo>Région au nord de l'Italie et de la Grèce</geo>
                   </location>
-                  <note>Ces régions sont froides, et souvent peuplées de nomades.</note>
+                  <note>Ces régions sont froides, et souvent peuplées de nomades</note>
                </place>
                <place xml:id="Thessali">
                   <placeName>Thessalie</placeName>
-                  <note>Région au sud de la Macédoine et au nord de l'Epire faisant partie de la Grèce antique.</note>
+                  <note>Région au sud de la Macédoine et au nord de l'Epire faisant partie de la Grèce antique</note>
                </place>
                <place xml:id="Persis" type="empire">
                   <placeName from-custom="550 av. J-C" to-custom="330 av. J-C"
                         >Perse</placeName>
-                  <note>Pays recouvrant notammant l'Iran.</note>
+                  <note>Pays recouvrant notammant l'Iran</note>
                </place>
                <place xml:id="Lydia" type="royaume">
                   <placeName>Lydie</placeName>
-                  <note>Pays de l'Antiquité situé en Asie Mineure, à l'est de l'Eolie.</note>
+                  <note>Pays de l'Antiquité situé en Asie Mineure, à l'est de l'Eolie</note>
                </place>
                <place xml:id="Tyrio" type="ville">
                   <placeName>Tyr</placeName>
                   <location>
                      <geo>33° 16′ 08″ nord, 35° 12′ 59″ est</geo>
                   </location>
-                  <note>Ville de Phénicie, au sud de l'actuel Liban.</note>
+                  <note>Ville de Phénicie, au sud de l'actuel Liban</note>
                </place>
             </listPlace>
          </settingDesc>
@@ -146,11 +146,11 @@
                </person>
                <person xml:id="Nutrix" sex="femme">
                   <persName><surname>La Nourrice</surname></persName>
-                  <occupation>Nourrice et confidente de Phèdre.</occupation>
+                  <occupation>Nourrice et confidente de Phèdre</occupation>
                </person>
                <person xml:id="Theseus" sex="homme">
                   <persName><surname>Thésée</surname></persName>
-                  <occupation>Roi d'Athènes.</occupation>
+                  <occupation>Roi d'Athènes</occupation>
                </person>
                <listRelation>
                   <relation name="epoux" mutual="#Phaedra #Thésée"/>
@@ -160,47 +160,47 @@
                <person xml:id="Diti">
                   <persName><surname>Pluton</surname><name>Dis</name><name>Dis
                         Pater</name><roleName>Dieu des enfers</roleName></persName>
-                  <occupation>Dieu des enfers, aussi appelé Dis et Dis Pater.</occupation>
+                  <occupation>Dieu des enfers, aussi appelé Dis et Dis Pater</occupation>
                </person>
                <person xml:id="Venere">
                   <persName><surname>Vénus</surname><roleName>Déesse de
                      l'amour</roleName></persName>
-                  <occupation>Déesse de l'amour.</occupation>
+                  <occupation>Déesse de l'amour</occupation>
                </person>
                <person xml:id="Palladia">
                   <persName><surname>Athéna</surname><name>Pallas-Athéna</name><name>Pallas</name><roleName>Déesse
                         de la sagesse</roleName>
-                  </persName><occupation>Déesse de la sagesse.</occupation>
+                  </persName><occupation>Déesse de la sagesse</occupation>
                </person>
                <person xml:id="Cupido">
                   <persName><surname>Cupidon</surname><roleName>Dieu de
-                     l'amour</roleName></persName><occupation>Dieu de l'amour.</occupation>
+                     l'amour</roleName></persName><occupation>Dieu de l'amour</occupation>
                </person>
                <person xml:id="Phoebus">
                   <persName><surname>Apollon</surname><name>Phoebus</name><name>Apollon</name><roleName>Dieu
-                        incarnant le soleil</roleName></persName><occupation>Dieu incarnant le soleil, aussi appelé Phébus.</occupation>
+                        incarnant le soleil</roleName></persName><occupation>Dieu incarnant le soleil, aussi appelé Phébus</occupation>
                </person>
             </listPerson>
             <listPerson type="Mentionnés">
                <person xml:id="Antiope">
                   <persName><surname>Antiope</surname></persName>
                   <death>Morte à Athènes.</death>
-                  <occupation>Reine des Amazones.</occupation>
+                  <occupation>Reine des Amazones</occupation>
                   <nationality>Amazone</nationality>
                   <note>Seule amazone à s'être mariée</note>
                </person>
                <person xml:id="Perithoi">
                   <persName><surname>Pirithoüs</surname><forename>Pirithoos</forename></persName>
-                  <occupation>Roi des Lapithes.</occupation>
+                  <occupation>Roi des Lapithes</occupation>
                </person>
                <person xml:id="Ariadnae">
                   <persName><surname>Ariane</surname></persName>
-                  <occupation>Soeur de Phèdre et fille du roi de Crète, Minos.</occupation>
+                  <occupation>Soeur de Phèdre et fille du roi de Crète, Minos</occupation>
                </person>
                <person xml:id="Alcmena">
                   <persName><surname>Alcmène</surname><roleName>Reine de
                      Tirynthe.</roleName></persName>
-                  <occupation>Reine de Tirynthe et mère d'Héraclès.</occupation>
+                  <occupation>Reine de Tirynthe et mère d'Héraclès</occupation>
                   <note>Elle eut une relation avec Zeus, de laquelle union naquit Héraclès.</note>
                </person>
                <listRelation>
