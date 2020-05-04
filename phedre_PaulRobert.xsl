@@ -24,6 +24,7 @@
 \usepackage{glossaries}
 \makeglossaries
 <xsl:call-template name="glossaire"/> <!-- j'appelle le premier template qui liste les entrées de glossaire à mettre dans le préambule -->
+
 \setstanzaindents{0,1}
 \setcounter{stanzaindentsrepetition}{1}        
             
@@ -39,7 +40,7 @@
 \firstlinenum{5}
 \linenumincrement{5}
 \linenummargin{right}
-\chapter{texte : vers <xsl:value-of select=".//sp[1]/l[1]/@n"/> au vers <xsl:value-of select=".//sp[last()]/l[last()]/@n"/>}  <!-- Grâceà du XPath, je viens récupérer
+\chapter*{Texte : vers <xsl:value-of select=".//sp[1]/l[1]/@n"/> au vers <xsl:value-of select=".//sp[last()]/l[last()]/@n"/>}  <!-- Grâceà du XPath, je viens récupérer
 la valeur de l'attribut n du premier <l> et du dernier <l> de l'ensemble du document. Je spécifie que je veux la valeur de n du premier/dernier <l> du premier/dernier <sp> -->
 
 \setline{<xsl:value-of select=".//sp[1]/l[1]/@n"/>} <!-- Je fais démarrer la numération là où démarre la numérotion dans l'attribut n du premier <l> du premier <sp> -->
@@ -47,6 +48,14 @@ la valeur de l'attribut n du premier <l> et du dernier <l> de l'ensemble du docu
 \stanza 
 <xsl:call-template name="texte"/> <!-- J'appelle le template contenant le texte -->
 \endnumbering
+
+\chapter*{Index} <!-- Je vais appeler mes deux index -->
+
+\section*{Index des noms de personnes}
+<xsl:call-template name="index_pers"/>
+            
+\section*{Index des noms de lieux}
+<xsl:call-template name="index_lieux"/>
 \printglossaries
 \end{document}
         </xsl:result-document>
@@ -56,20 +65,35 @@ la valeur de l'attribut n du premier <l> et du dernier <l> de l'ensemble du docu
         <xsl:for-each select="//l"> <!-- Je boucle sur les <l> pour permettre de les compter. A chaque l j'ajoute à la fin un & (retour à la ligne sous LaTeX) et au 
         dernier <l> du document je fais terminer le vers par un \& qui met fin au document -->
             
-            <!-- Dans cette boucle conditionnelle là, je compare la valeur de l'attribut @who du noeud parent <sp> de l'actuel <l> avec la valeur de l'attribut @who
-              du noeud parent <sp> du précédent <l>. Ainsi,je compare pour chaque vers si le locuteur est le même. S'il est le même, on fait un saut de ligne.
+            
+            <xsl:choose>
+                <xsl:when test="@part='I'"> <!-- Cette boucle permet de ne pas compter les vers scindés entre deux locuteurs -->
+                    <xsl:text> \skipnumbering </xsl:text>
+                </xsl:when>
+            </xsl:choose>
+            <!-- Dans cette boucle conditionnelle là, je compare la valeur du noeud parent <sp> de l'actuel <l> avec la valeur noeud parent <sp> du précédent <l>.
+             Ainsi,je compare pour chaque vers si le locuteur, présent dans l'attribut @who, est le même. S'il est le même, on fait un saut de ligne.
             S'il est différent, alors on écrit le nom du locuteur (contenu dans l'attribut @who du noeud parent <sp>). -->
             <xsl:choose>
-                <xsl:when test="parent::sp = preceding-sibling::l[1]/parent::sp"><xsl:text> \qquad </xsl:text><xsl:apply-templates/></xsl:when>
+                <xsl:when test="parent::sp = preceding-sibling::l[1]/parent::sp">
+                    <xsl:text> \qquad </xsl:text>
+                    <xsl:apply-templates/>
+                </xsl:when>
                 <!-- preceding-sibling::l[1]/parent::sp  le " l[1] signifie que l'on prend uniquement le premier voisin précédent, et pas tous les précédents -->
-                <xsl:otherwise><xsl:value-of select="parent::sp/replace(@who, '#','')"/>
+                <xsl:otherwise>
+                    <xsl:value-of select="parent::sp/replace(@who, '#','')"/>
                     <xsl:text> : </xsl:text>
-                    <xsl:apply-templates/></xsl:otherwise>
+                    <xsl:apply-templates/>
+                </xsl:otherwise>
             </xsl:choose>
             <!-- Dans cette seconde boucle conditionnelle, je compare la position du <l>. S'il est dernier, il faut rajouter un \& à la fin. Sinon, on met un & (saut de ligne) -->
             <xsl:choose>
-                <xsl:when test="position() = last()"><xsl:text> \&amp; </xsl:text></xsl:when>
-                <xsl:otherwise><xsl:text> &amp; </xsl:text></xsl:otherwise>
+                <xsl:when test="position() = last()">
+                    <xsl:text> \&amp; </xsl:text>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:text> &amp; </xsl:text>
+                </xsl:otherwise>
             </xsl:choose> 
         </xsl:for-each> 
     </xsl:template>
@@ -79,6 +103,11 @@ la valeur de l'attribut n du premier <l> et du dernier <l> de l'ensemble du docu
     variante (<rdg>), je mets la variante (value-of select=".") et l'acronyme de la variante (value-of select="(@wit, '#', ' '))-->
     <xsl:template match="app">
         <xsl:text>\edtext{</xsl:text>
+        <xsl:choose>
+            <xsl:when test="./lem/@type='om'">
+                <xsl:text>\textit{omisit}</xsl:text>
+            </xsl:when>
+        </xsl:choose>
         <xsl:value-of select="lem"/><xsl:text>}{\Afootnote{</xsl:text>
         <xsl:for-each select="rdg">
             <xsl:choose>
@@ -156,6 +185,42 @@ la valeur de l'attribut n du premier <l> et du dernier <l> de l'ensemble du docu
         </xsl:for-each>
     </xsl:template>
     
-
+    <!-- Le fonctionnement de l'index des personnes et des lieux est identique. Je crée une boucle qui sélectionne toutes les balises <persName> du <body>
+    (il y a des balises <persName> dans le Header, il ne faut pas les prendre), et je prends le texte à l'intérieur de la balise. Ce texte est mis en gras.
+    Ensuite, je cherche à récupérer le nom français de ce que j'ai sélectionné. Pour cela, je donne à une variable (ici $attribut_pers) la valeur de l'attribut @ref de
+    la balise <persName>, que j'insère ensuite dans un chemin Xpath permettant de récupérer dans le Header la version décrite du mot. Cela permet d'avoir
+    l'occurence du mot dans le texte, puis une forme canonique que j'ai décrété dans le Header. Enfin, je récupère le numéro du vers en récupérant la valeur de 
+    l'attribut @n du <l> parent (plus précisément ancêtre, car généralement il y a d'autres balises entre <persName> et <l>). -->
+    <xsl:template name="index_pers">
+        <xsl:for-each select="//body//persName">
+            <xsl:text>\textbf{</xsl:text>
+            <xsl:value-of select="./text()"/> <!-- Je sélectionne la valeur de texte à l'intérieur du <persName> -->
+            <xsl:text>} : </xsl:text>
+            <xsl:text>\textit{</xsl:text>
+            <xsl:variable name="attribut_pers">
+                <xsl:value-of select="./replace(@ref, '#', '')"/> <!-- j'attribue à une variable la valeur de l'attribut @ref -->
+            </xsl:variable>
+            <xsl:value-of select="//person[@xml:id=$attribut_pers]//surname"/> <!-- J'insère dans mon Xpath ma variable pour sélectionner le bon <surname> -->
+            <xsl:text>}, v.</xsl:text>
+            <xsl:value-of select="ancestor::l/@n"/> <!-- Je récupère la valeur de l'attribut @n pour numéroter mon verss -->
+            <xsl:text> \\ </xsl:text>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xsl:template name="index_lieux">
+        <xsl:for-each select="//body//placeName">
+            <xsl:text>\textbf{</xsl:text>
+            <xsl:value-of select="./text()"/>
+            <xsl:text>} : </xsl:text>
+            <xsl:text>\textit{</xsl:text>
+            <xsl:variable name="attribut_lieu">
+                <xsl:value-of select="./replace(@ref, '#', '')"/>
+            </xsl:variable>
+            <xsl:value-of select="//place[@xml:id=$attribut_lieu]/placeName"/>
+            <xsl:text>}, v.</xsl:text>
+            <xsl:value-of select="ancestor::l/@n"/>
+            <xsl:text> \\ </xsl:text>
+        </xsl:for-each>
+    </xsl:template>
     
 </xsl:stylesheet>

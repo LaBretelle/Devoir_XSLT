@@ -92,7 +92,7 @@
                   <placeName>Le fleuve Styx</placeName><note>Fleuve mythologique des enfers</note>
                </place>
                <place xml:id="arce" type="cité">
-                  <placeName>Pallas-Athènes<country>Grèce</country><settlement type="citadelle"
+                  <placeName>Pallas-Athènes en <country>Grèce</country> à <settlement type="citadelle"
                         >Athènes</settlement></placeName>
                   <note>Pallas-Athena est un des noms de la déesse Athéna, déesse protectrice de la
                      ville d'Athènes</note>
@@ -323,10 +323,10 @@
             <l n="245" part="I">Aderitque genitor,</l>
          </sp>
          <sp who="#Phaedra">
-            <l n="245b" part="F">Mitis, <persName ref="#Ariadnae"><app>
-                     <lem wit="#E">Ariadnae</lem>
+            <l n="245b" part="F">Mitis, <app>
+               <lem wit="#E"><persName ref="#Ariadnae">Ariadnae</persName></lem>
                      <rdg wit="#A"/>
-                  </app></persName> pater. </l>
+                  </app> pater. </l>
          </sp>
          <sp who="#Nutrix">
             <l n="246">Per has senectae <app>
@@ -340,7 +340,7 @@
                </app> adiuva:</l>
             <l n="249"><app>
                   <lem wit="#A">pars</lem>
-                  <rdg wit="#E"/>
+                  <rdg wit="#E" type="om"/>
                </app> sanitatis velle sanari fuit.</l>
          </sp>
          <sp who="#Phaedra">
